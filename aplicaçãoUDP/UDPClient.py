@@ -2,6 +2,7 @@ from socket import *
 
 # Dados para envio ao servidor
 serverName = "hostname" # Usamos ou endereço IP ou nome de hospedeiro do servidor.
+
 # Define número da porta do servidor
 serverPort = 1200
 
