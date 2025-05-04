@@ -1,7 +1,7 @@
 from socket import *
-
+# =-=-=-=-=- Config =-=-=-=-=-=-
 # Dados para envio ao servidor
-serverName = "hostname" # Usamos ou endereço IP ou nome de hospedeiro do servidor.
+serverName = "localhost" # Usamos ou endereço IP ou nome de hospedeiro do servidor.
 
 # Define número da porta do servidor
 serverPort = 1200
@@ -12,18 +12,23 @@ clientSocket = socket(AF_INET, SOCK_DGRAM) # AF_INET -> Explicita o uso de IPv4;
 # Guarda mensagem digitada pelo usuário
 message = input("Input lowercase sentence:")
 
-# Envia mensagem para o servidor usando o socket do cliente
-clientSocket.sendto(message.encode(),(serverName, serverPort)) # .econde() -> converte de string p byte /.sendto(data, address)
 
-# OBS:
+# =-=-=-=-=-=- Envio =-=-=-=-=-=-
+# Envia mensagem para o servidor usando o socket do cliente
+clientSocket.sendto(message.encode(),(serverName, serverPort)) # .enconde() -> converte de string p byte /.sendto(data, address)
 # - O endereço de origem tambemestá conectado ao pacote enviado
 # - A porta do clientSocket é gerada automaticamente pelo SO 
 
+
+# =-=-=-=-= Recebimento =-=-=-=-=-
 # Recebe mensagem modificada e o endereço do servidor pelo socket do cliente
 modifiedMessage, serverAddress = clientSocket.recvfrom(2048) # 2048 é o tamanho do buffer (esse tamanho funciona p quase todos os fins)
 
+
+# =-=-=-=-= Restante =-=-=-=-=-=-
 # Imprime mensagem recebida do servidor depois de converter de byte p string
 print(modifiedMessage.decode())
+
 
 # Fecha o socket
 clientSocket.close()
